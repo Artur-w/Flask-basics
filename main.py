@@ -1,8 +1,20 @@
 from flask import Flask, request
-from flask_restful import Api, Resource, reqparse, abort
+from flask_restful import Api, Resource, reqparse, abort, fields, marshal_with
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 api = Api(app)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+db = SQLAlchemy(app)
+
+class MemeModel(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(256), nullable=False)
+    likes = db.Column(db.Integer, nullable=False)
+
+    def __repr__(self):
+        return f'Meme(name={name}, likes={likes})'
 
 meme_put_args = reqparse.RequestParser()
 meme_put_args.add_argument("name", type=str, help="Name of meme")
