@@ -7,7 +7,25 @@ Basic flask API with sqlite, nice and easy.
 
 To install all required packages run `pip install -r requirements.txt`
 
-## Run
+## Run main
 
 To run server enter `python main.py`
-now it can be accessed from `loclhost:5000` or `127.0.0.1:5000` in web browser.
+now it can be accessed from `loclhost:105` or `127.0.0.1:105` in web browser.
+> default port for Flask app is 5000
+
+## Blueprints
+
+Blueprints allow us to separate various endpoints into subdomains.
+
+- home.py
+- contact.py
+- app.py
+
+### Run blueprint
+
+`python app.py`
+
+### Access on:
+
+`localhost:5000/home/hello`
+`localhost:5000/contact/hello`
