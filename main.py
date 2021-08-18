@@ -1,4 +1,5 @@
 from flask import Flask # import flask class
+from flask import jsonify # make output JSON serializable
 
 app = Flask(__name__) # create an instance of the class
 
@@ -16,6 +17,23 @@ def incrementer(number):
 def hello(name):
     return "Hello " + name
 
+@app.route('/person/')
+def helloj():
+    return jsonify({'name':'Artur',
+    'address':'Ireland'})
+
+# use jsonify to automatically serialize list and tuples to JSON response
+@app.route('/numbers/')
+def print_list():
+    return jsonify(list(range(5)))
+
+@app.route('/home/')
+def home():
+    return "Home Page"
+
+@app.route('/contact') # missing trailing slash
+def contact():
+    return "Contact Page"
 
 
 # __name__ special variable in Python - takes the value of the script name
