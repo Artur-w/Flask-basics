@@ -9,6 +9,8 @@ app = Flask(__name__) # create an instance of the class
 def welcome():
     return "Hello World!"
 
+# Variable rules
+
 @app.route('/<int:number>/')
 def incrementer(number):
     return "Incremented number is " + str(number+1)
@@ -16,6 +18,8 @@ def incrementer(number):
 @app.route('/<string:name>/')
 def hello(name):
     return "Hello " + name
+
+# JSON Serializable output
 
 @app.route('/person/')
 def helloj():
@@ -27,6 +31,8 @@ def helloj():
 def print_list():
     return jsonify(list(range(5)))
 
+# Redirection behaviour
+
 @app.route('/home/')
 def home():
     return "Home Page"
@@ -34,6 +40,28 @@ def home():
 @app.route('/contact') # missing trailing slash
 def contact():
     return "Contact Page"
+
+'''
+In the above example, the URL for the home endpoint has a trailing slash whereas the URL for the contact endpoint is missing the trailing slash.
+This results in two different behaviours:
+For the home endpoint, if you access the URL without the trailing slash, then Flask redirects you to the URL with the trailing slash.
+For the contact endpoint, if you access the URL with the trailing slash, then it will result in status 404 Not Found.
+
+'''
+
+# Return Status code
+
+@app.route('/teapot/')
+def teapot():
+    # return text below with status code 418 instead of 200
+    return "Would you like some tea?", 418
+
+# Before request
+# we can specify a function which should execute before the request
+
+@app.before_request
+def before():
+    print("This is executed BEFORE each request.")
 
 
 # __name__ special variable in Python - takes the value of the script name
