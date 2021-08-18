@@ -5,7 +5,7 @@ Basic flask API with sqlite, nice and easy.
 
 ## Install
 
-To install all required packages run `pip install -r requirements.txt`
+`pip install Flask`
 
 ## Run main
 
