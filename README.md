@@ -1,6 +1,6 @@
-# Flask API
+# Flask basics
 
-Basic flask API with sqlite, nice and easy.
+Basic flask app
 
 
 ## Install
